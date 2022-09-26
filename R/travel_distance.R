@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-travel_time <- function(..., mode_of_transport = "subway") {
+travel_distance <- function(..., mode_of_transport = "subway") {
   if (mode_of_transport == "subway") return(subway_distance(...))
   if (mode_of_transport == "drive") return(drive_distance(...))
   if (mode_of_transport == "walk") return(walk_distance(...))

@@ -8,6 +8,6 @@
 #' @return vector of times
 #'
 #' @examples
-drive_time <- function(census_tract_from, census_tract_to)  {
+time.drive <- function(census_tract_from, census_tract_to)  {
 
 }

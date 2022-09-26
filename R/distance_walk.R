@@ -9,6 +9,6 @@
 #' @export
 #'
 #' @examples
-walking_distance <- function(census_tract_from, census_tract_to)  {
+distance.walk <- function(census_tract_from, census_tract_to)  {
   # Function takes two length-n vectors of census tracts and returns one vector of distances (miles)
 }

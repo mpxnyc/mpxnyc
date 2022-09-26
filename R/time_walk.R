@@ -8,7 +8,7 @@
 #' @return vector of times
 #'
 #' @examples
-walking_times <- function(census_tract_from, census_tract_to)  {
+time.walk <- function(census_tract_from, census_tract_to)  {
 
 
   }

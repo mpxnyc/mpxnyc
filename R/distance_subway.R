@@ -8,6 +8,9 @@
 #' @return vector of distances
 #' @export
 #'
-subway_distance <- function(census_tract_from, census_tract_to) {
-
+distance.subway <- function(census_tract_from, census_tract_to) {
+  # https://maps.googleapis.com/maps/api/directions/json
+  # ?destination=Montreal
+  # &origin=Toronto
+  # &key=YOUR_API_KEY
 }
