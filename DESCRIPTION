@@ -17,8 +17,12 @@ BugReports: https://github.com/KeletsoMakofane/mpxnyc/issues
 RoxygenNote: 7.2.1
 Imports: 
     dplyr,
+    httr,
+    mapsapi,
     purrr,
     sf,
-    tigris
+    stringr,
+    tigris,
+    xml2
 Depends: 
     R (>= 2.10)
