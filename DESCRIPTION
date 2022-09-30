@@ -17,6 +17,7 @@ BugReports: https://github.com/KeletsoMakofane/mpxnyc/issues
 RoxygenNote: 7.2.1
 Imports: 
     dplyr,
+    getPass,
     httr,
     mapsapi,
     purrr,
