@@ -1,15 +1,23 @@
+
+travel_distance_single <- function(mode_of_transport, ...) {
+  if (mode_of_transport == "subway") return(distance.subway(...))
+  if (mode_of_transport == "drive") return(distance.drive(...))
+  if (mode_of_transport == "walk") return(distance.walk(...))
+}
+
 #' Travel Distance
 #'
-#' @param census_tract_from Origin census tract
-#' @param census_tract_to Destination census tract
-#' @param mode_of_transport Which mode of transport. Default is "subway", other options are "walk" and "drive"
+#' @param census_tract_from Origin Census Tract (string)
+#' @param census_tract_to Destination Census Tract (string)
+#' @param mode_of_transport Mode of transport (string) "subway" or "drive" or "walk"
+#' @param key Google Maps API Key
 #'
-#' @return
+#' @return data.frame with columns "distance" and "duration"
 #' @export
 #'
 #' @examples
-travel_distance <- function(..., mode_of_transport = "subway") {
-  if (mode_of_transport == "subway") return(subway_distance(...))
-  if (mode_of_transport == "drive") return(drive_distance(...))
-  if (mode_of_transport == "walk") return(walk_distance(...))
+travel_distance <- function(census_tract_from, census_tract_to, mode_of_transport, ...) {
+  purrr::map2(census_tract_from, census_tract_to, function(x,y) travel_distance_single(census_tract_from = x, census_tract_to = y, mode_of_transport=mode_of_transport, ...)) |>
+    dplyr::bind_rows() |>
+    data.frame()
 }

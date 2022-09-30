@@ -8,24 +8,31 @@
 #' @return vector of distances
 #' @export
 #'
-distance.subway <- function(census_tract_from, census_tract_to) {
-  # https://maps.googleapis.com/maps/api/directions/json
-  # ?destination=Montreal
-  # &origin=Toronto
-  # &key=YOUR_API_KEY
-api_key = "AIzaSyCZsXIB8OhQRMRefBS2u0DGipM12mPLKw8"
+distance.subway <- function(census_tract_from, census_tract_to, key="") {
 
-  census_tract_from <- "36005043600"
-  census_tract_to <- "36005028800"
+  if(key=="")
+    key = getPass::getPass(msg = "Google API Key:")
 
-from_coords <- census_tract_centroids |>
-  dplyr::filter(GEOID == census_tract_from) |>
-  dplyr::pull(coord)
+  centroids <- census_tract_centroids
 
-to_coords <- census_tract_centroids |>
-  dplyr::filter(GEOID == census_tract_to) |>
-  dplyr::pull(coord)
+  if(F %in% (c("GEOID", "lon", "lat") %in% colnames(centroids)))
+    stop("centroids file needs columns named 'GEOID', 'lon', 'lat'")
 
-endpoint <- stringr::str_interp("https://maps.googleapis.com/maps/api/directions/json?destination=${to_coords[2]},${to_coords[1]}&origin=${from_coords[2]},${from_coords[1]}&key=${api_key}")
+  if(!(census_tract_from %in% centroids$GEOID) | !(census_tract_to %in% centroids$GEOID))
+    stop("GEOIDs provided not in centroid file")
 
+  centroids <- centroids %>% select(GEOID, lon, lat)
+
+  api_res <- mapsapi::mp_directions(
+    origin = as.matrix(centroids |> dplyr::filter(GEOID == census_tract_from) |> dplyr::select(lon, lat)),
+    destination  = as.matrix(centroids |> dplyr::filter(GEOID == census_tract_to) |> dplyr::select(lon, lat)),
+    mode = "transit",
+    departure_time = lubridate::ymd_hms(paste0(as.character(Sys.Date() + lubridate::days(30)), " 19:00:00")),
+    key = key
+  )
+
+  dist <- xml2::xml_double(xml_find_all(api_res, "//route/leg/distance/value"))
+  dur <- xml2::xml_double(xml_find_all(api_res, "//route/leg/duration/value"))
+  res <- c(dist, dur)
+  return(setNames(res, c("distance" , "duration")))
 }
