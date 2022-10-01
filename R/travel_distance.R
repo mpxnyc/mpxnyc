@@ -14,8 +14,16 @@ travel_distance <- function(census_tract_from, census_tract_to, mode_of_transpor
     data.frame()
 }
 
-travel_distance_single <- function(mode_of_transport, ...) {
+travel_distance_single_fast <- function(mode_of_transport, ...) {
   if (mode_of_transport == "subway") return(distance.subway(...))
   if (mode_of_transport == "drive") return(distance.drive(...))
   if (mode_of_transport == "walk") return(distance.walk(...))
 }
+
+travel_distance_single <- function(...) "dummy"
+
+.onLoad <- function(lib, pkg) {
+  travel_distance_single <<- purrr::slowly(travel_distance_single_fast, rate=purrr::rate_delay(pause=0.3))
+}
+
+
