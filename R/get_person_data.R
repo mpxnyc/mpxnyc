@@ -3,14 +3,16 @@
 #' @param limit Maximum number of cases to fetch
 #' @param url URL for neo4j server
 #' @param user URL Username for neo4j server
-#' @param password URL Passwortd for neo4j server
+#' @param password URL Password for neo4j server
 #'
 #' @return data.frame Person-level data
 #' @export
 #'
 
 
-get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", user = "mp_read_user", password = "L8upDYa8MrJ6Cl2AFfe0"){
+get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", user = "mp_read_user", password = ""){
+
+  if (password == "") password = getPass::getPass(msg = "Neo4j Password:")
 
     paste(
       "MATCH (a:CensusTract)-[l:LIVES_IN]-(n:Person)",
