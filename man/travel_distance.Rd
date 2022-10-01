@@ -16,7 +16,7 @@ travel_distance(census_tract_from, census_tract_to, mode_of_transport, ...)
 \item{key}{Google Maps API Key}
 }
 \value{
-data.frame with columns "distance" and "duration"
+data.frame with columns "distance" (in meters) and "duration" (in seconds)
 }
 \description{
 Travel Distance

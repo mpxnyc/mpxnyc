@@ -9,7 +9,6 @@
 #' @return Vector (character) of neighborhood or borrough names
 #' @export
 #'
-#' @examples
 convert_spatial_unit_ny <- function(census_tract = NULL, neighborhood_name = NULL, convert_to="neighborhood") {
 
   if (!is.null(census_tract) & !is.null(neighborhood_name)) stop("Use input parameter census_tract or neighborhood_name, not both!")

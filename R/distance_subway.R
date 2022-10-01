@@ -6,7 +6,6 @@
 #' @param census_tract_to Destination census tract
 #'
 #' @return vector of distances
-#' @export
 #'
 distance.subway <- function(census_tract_from, census_tract_to, key="") {
 

@@ -10,5 +10,5 @@ get_census_spacial_neighbors(census_tracts)
 List of neighbor sets
 }
 \description{
-Get census spacial neighbors
+Find the neighboring census tracts for a vector of census tracts
 }

@@ -7,9 +7,7 @@
 #'
 #' @return vector of distances
 #'
-#' @export
-#'
-#' @examples
+
 distance.drive <- function(census_tract_from, census_tract_to, key="")  {
 
     if(key=="")
