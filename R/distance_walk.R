@@ -7,7 +7,6 @@
 #' @param key Google Maps API Key
 #'
 #' @return vector of distances
-#' @export
 #'
 distance.walk <- function(census_tract_from, census_tract_to, key="")  {
 
