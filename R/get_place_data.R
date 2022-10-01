@@ -3,7 +3,7 @@
 #' @param limit Maximum number of cases to fetch
 #' @param url URL for neo4j server
 #' @param user URL Username for neo4j server
-#' @param password URL Passwortd for neo4j server
+#' @param password URL Password for neo4j server
 #'
 #' @return data.frame Place-level data
 #' @export

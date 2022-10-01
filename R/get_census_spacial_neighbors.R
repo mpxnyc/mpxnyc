@@ -1,9 +1,9 @@
 #' Get census spacial neighbors
 #'
-#' @return
+#' @return List of neighbor sets
 #' @export
 #'
 #' @examples
-get_census_spacial_neighbors <- function() {
-  # Function takes one length-q vector of census tracts and returns a length-q list with entries which are length-n vectors of census tracts
-}
+get_census_spacial_neighbors <- function(census_tracts) {
+    adj_matrix[census_tracts]
+  }

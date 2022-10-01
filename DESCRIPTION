@@ -23,6 +23,7 @@ Imports:
     mapsapi,
     purrr,
     sf,
+    spdep,
     stringr,
     tigris,
     xml2
