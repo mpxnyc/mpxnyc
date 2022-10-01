@@ -4,7 +4,10 @@
 \alias{get_census_spacial_neighbors}
 \title{Get census spacial neighbors}
 \usage{
-get_census_spacial_neighbors()
+get_census_spacial_neighbors(census_tracts)
+}
+\value{
+List of neighbor sets
 }
 \description{
 Get census spacial neighbors

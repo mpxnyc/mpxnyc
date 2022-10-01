@@ -18,7 +18,7 @@ get_place_data(
 
 \item{user}{URL Username for neo4j server}
 
-\item{password}{URL Passwortd for neo4j server}
+\item{password}{URL Password for neo4j server}
 }
 \value{
 data.frame Place-level data
