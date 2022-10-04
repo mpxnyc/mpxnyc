@@ -15,6 +15,7 @@ get_place_data <- function(limit=1, url = "https://core01.respndmi.app:7473", us
   paste(
     "MATCH (a:CensusTract)-[l:LIVES_IN]-(p:Person)-[r:GROUP_SEX_IN]-(c:CensusTract)",
     "RETURN",
+    "p.userId as userId,",
     "a.identifier as censusTractHome,",
     "c.identifier as censusTractPlace,",
     "r.createdAt as createdAt,",

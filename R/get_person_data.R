@@ -17,6 +17,7 @@ get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", u
     paste(
       "MATCH (a:CensusTract)-[l:LIVES_IN]-(n:Person)",
       "RETURN",
+      "n.userId as userId,",
       "a.identifier as censusTractHome,",
       "n.age as age,",
       "n.anotherQuestion as anotherQuestion,",
