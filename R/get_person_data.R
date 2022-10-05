@@ -40,6 +40,7 @@ get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", u
       "n.raceBlack as raceBlack,",
       "n.racePacific as racePacific,",
       "n.raceWhite as raceWhite,",
+      "n.raceLatinx as raceLatinx,",
       "n.raceOther as raceOther,",
       "n.referralType as referralType,",
       "n.referrerEnglish as referrerEnglish,",
