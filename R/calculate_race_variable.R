@@ -1,14 +1,13 @@
-#' Cr4eate Race Variable
+#' Create Race Variable
 #'
 #' @param data Person data (data.frame)
-#' @param racevars Names of Race Variables (character vector)
-#' @param racelabels Race Labels (character vector)
 #'
-#' @return data.frame Updated dataset
-#' @export
+#' @return data.frame Updated dataset with race variable
 #'
-create_race_var <- function(data , racevars, racelabels) {
-  #This function takes in a participants_data data.frame, and returns a categorical vector
+calculate_race_variable <- function(data) {
+
+  racevars <- c("raceAsian","raceBlack","raceWhite","raceLatinx","racePacific","raceOther")
+  racelabels <- c("Asian","Black","White","Latinx","Other","Multiple races reported")
 
   for (x in racevars) {
     data[,x] <- ifelse(data[,x]=="TRUE",1,0)

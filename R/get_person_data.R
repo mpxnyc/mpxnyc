@@ -70,7 +70,10 @@ get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", u
       purrr::pluck() |>
       purrr::pluck() |>
       lapply(function(x) dplyr::pull(x, value)) |>
-      data.frame()
+      data.frame() |>
+      calculate_symptomcount_variable() |>
+      calculate_gender_variable() |>
+      calculate_race_variable()
   }
 
 

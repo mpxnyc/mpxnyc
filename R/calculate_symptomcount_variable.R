@@ -1,16 +1,15 @@
 
 
-#' Calculate SymptomCount variable
+#' Calculate Symptom Count variable
 #'
 #' @param data Person data set
-#' @param symptvars Name of symptom variables (character vector)
 #'
-#' @return data.frame
-#' @export
+#' @return data.frame with num_symptoms variable
 #'
 #' @examples
-  calculate_symptomcount_variable <- function(data, symptvars) {
-    #This function takes in a participants_data data.frame, and returns an integer vector
+  calculate_symptomcount_variable <- function(data) {
+
+    symptom_vars <- names(data[,grepl("symptom",names(data))])
 
     for (x in symptom_vars) {
       temp <- data[,symptom_vars]
