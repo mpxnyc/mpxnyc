@@ -8,7 +8,7 @@ get_place_data(
   limit = 1,
   url = "https://core01.respndmi.app:7473",
   user = "mp_read_user",
-  password = "L8upDYa8MrJ6Cl2AFfe0"
+  password = ""
 )
 }
 \arguments{

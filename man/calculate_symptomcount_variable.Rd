@@ -2,10 +2,16 @@
 % Please edit documentation in R/calculate_symptomcount_variable.R
 \name{calculate_symptomcount_variable}
 \alias{calculate_symptomcount_variable}
-\title{Calculate symptom count variable}
+\title{Calculate Symptom Count variable}
 \usage{
-calculate_symptomcount_variable()
+calculate_symptomcount_variable(data)
+}
+\arguments{
+\item{data}{Person data set}
+}
+\value{
+data.frame with num_symptoms variable
 }
 \description{
-Calculate symptom count variable
+Calculate Symptom Count variable
 }

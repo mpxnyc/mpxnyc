@@ -4,7 +4,13 @@
 \alias{calculate_gender_variable}
 \title{Create Gender Variable}
 \usage{
-calculate_gender_variable()
+calculate_gender_variable(data)
+}
+\arguments{
+\item{data}{Person data (data.frame)}
+}
+\value{
+data.frame Person data with genderId variable
 }
 \description{
 Create Gender Variable
