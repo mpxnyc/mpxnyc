@@ -12,7 +12,7 @@ distance.subway <- function(census_tract_from, census_tract_to, key="") {
   if(key=="")
     key = getPass::getPass(msg = "Google API Key:")
 
-  centroids <- census_tract_centroids
+  centroids <- int_data$census_tract_centroids
 
   if(F %in% (c("GEOID", "lon", "lat") %in% colnames(centroids)))
     stop("centroids file needs columns named 'GEOID', 'lon', 'lat'")
@@ -20,7 +20,7 @@ distance.subway <- function(census_tract_from, census_tract_to, key="") {
   if(!(census_tract_from %in% centroids$GEOID) | !(census_tract_to %in% centroids$GEOID))
     stop("GEOIDs provided not in centroid file")
 
-  centroids <- centroids %>% select(GEOID, lon, lat)
+  centroids <- centroids %>% dplyr::select(GEOID, lon, lat)
 
   api_res <- mapsapi::mp_directions(
     origin = as.matrix(centroids |> dplyr::filter(GEOID == census_tract_from) |> dplyr::select(lon, lat)),
@@ -30,8 +30,8 @@ distance.subway <- function(census_tract_from, census_tract_to, key="") {
     key = key
   )
 
-  dist <- xml2::xml_double(xml_find_all(api_res, "//route/leg/distance/value"))
-  dur <- xml2::xml_double(xml_find_all(api_res, "//route/leg/duration/value"))
+  dist <- xml2::xml_double(xml2::xml_find_all(api_res, "//route/leg/distance/value"))
+  dur <- xml2::xml_double(xml2::xml_find_all(api_res, "//route/leg/duration/value"))
   res <- c(dist, dur)
   return(setNames(res, c("distance" , "duration")))
 }
