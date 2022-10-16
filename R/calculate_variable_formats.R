@@ -18,15 +18,25 @@ calculate_variable_formats <- function(data) {
     setdiff(logical_variables)
 
 
+summary_variables <- c(factor_variables, numeric_variables, logical_variables)
+
+clean_and_factor <- function(x) {
+  x <- as.character(x)
+  clean <- ifelse(x == "", NA, x)
+  as.factor(clean)
+}
+
   result <- data |>
-    dplyr::mutate(across(all_of(numeric_variables), as.numeric)) %>%
-    dplyr::mutate(across(all_of(logical_variables), as.logical)) %>%
-    dplyr::mutate(across(all_of(factor_variables), as.factor))
+    dplyr::mutate(dplyr::across(dplyr::all_of(numeric_variables), as.numeric)) %>%
+    dplyr::mutate(dplyr::across(dplyr::all_of(logical_variables), as.logical)) %>%
+    dplyr::mutate(dplyr::across(dplyr::all_of(factor_variables), clean_and_factor)) %>%
+    dplyr::mutate(dplyr::across(dplyr::all_of(date_variables), as.Date))
 
   attr(result, "character_variables") <- character_variables
   attr(result, "numeric_variables")   <- numeric_variables
   attr(result, "date_variables")      <- date_variables
   attr(result, "logical_variables")   <- logical_variables
+  attr(result, "summary_variables")   <- summary_variables
 
   return(result)
 
