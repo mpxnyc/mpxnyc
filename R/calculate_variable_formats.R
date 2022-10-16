@@ -2,8 +2,8 @@
 
 calculate_variable_formats <- function(data) {
 
-  character_variables <- c("userId", "censusTractHome", "anotherQuestion")
-  numeric_variables   <- c("countFriends", "countPhysical",  "countSex", "num_symptoms", "travelTime")
+  character_variables <- c("userId", "censusTractHome", "anotherQuestion", "userId", "censusTractPlace")
+  numeric_variables   <- c("countFriends", "countPhysical",  "countSex", "num_symptoms", "travelTime", "placeFreqAttend", "placeFreqHaveSex")
   date_variables      <- c("createdAt", "vaccinationDate")
   logical_variables   <- c(
     "raceAsian", "raceBlack", "racePacific", "raceWhite", "raceLatinx", "raceOther",
@@ -27,10 +27,10 @@ clean_and_factor <- function(x) {
 }
 
   result <- data |>
-    dplyr::mutate(dplyr::across(dplyr::all_of(numeric_variables), as.numeric)) |>
-    dplyr::mutate(dplyr::across(dplyr::all_of(logical_variables), as.logical)) |>
-    dplyr::mutate(dplyr::across(dplyr::all_of(factor_variables), clean_and_factor)) |>
-    dplyr::mutate(dplyr::across(dplyr::all_of(date_variables), as.Date))
+    dplyr::mutate(dplyr::across(dplyr::any_of(numeric_variables), as.numeric)) |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(logical_variables), as.logical)) |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(factor_variables), clean_and_factor)) |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(date_variables), as.Date))
 
   attr(result, "character_variables") <- character_variables
   attr(result, "numeric_variables")   <- numeric_variables

@@ -5,15 +5,15 @@
 \title{Convert Spatial Units in New York City}
 \usage{
 convert_spatial_unit_ny(
-  census_tract = NULL,
-  neighborhood_name = NULL,
+  input_census_tract = NULL,
+  input_neighborhood_name = NULL,
   convert_to = "neighborhood"
 )
 }
 \arguments{
-\item{census_tract}{Vector (character) of input census tracts to convert to neighborhoods or boroughs}
+\item{input_census_tract}{Vector (character) of input census tracts to convert to neighborhoods or boroughs}
 
-\item{neighborhood_name}{Vector (character) of input neighborhoods to convert to boroughs}
+\item{input_neighborhood_name}{Vector (character) of input neighborhoods to convert to boroughs}
 
 \item{convert_to}{String showing how to convert census_tracts. Options are "neighborhood" (default) and "borough"}
 }
