@@ -1,8 +1,8 @@
 #' Census Tract SF Object
 #'
-#' A simple features (SF) object of all census tracts in the United States
+#' A simple features (sf) object of all census tracts in the United States
 #'
-#' @format sf
+#' @returns A sf object with columns: \code{census_tract} (chr), \code{county} (chr), and \code{state} (chr)
 #'
 
 "census_tract_sf_obj"

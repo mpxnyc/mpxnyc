@@ -5,12 +5,15 @@
 \alias{census_tract_sf_obj}
 \title{Census Tract SF Object}
 \format{
-sf
+An object of class \code{sf} (inherits from \code{data.frame}) with 85188 rows and 4 columns.
 }
 \usage{
 census_tract_sf_obj
 }
+\value{
+A sf object with columns: \code{census_tract} (chr), \code{county} (chr), and \code{state} (chr)
+}
 \description{
-A simple features (SF) object of all census tracts in the United States
+A simple features (sf) object of all census tracts in the United States
 }
 \keyword{datasets}
