@@ -1,4 +1,5 @@
-census_tract_sf_obj <- tigris::tracts(cb = TRUE, year=2020) |>
+census_tract_sf_obj <- tigris::tracts(state="NY", cb = TRUE, year=2020) |>
+  rbind(tigris::tracts(state="NJ", cb = TRUE, year=2020)) |>
   dplyr::select(GEOID, NAMELSADCO, STATE_NAME) |>
   dplyr::rename(census_tract = GEOID, county = NAMELSADCO, state = STATE_NAME)
 
@@ -12,14 +13,14 @@ census_tract_centroids <- census_tract_sf_obj |>
 
 
 neighborhood_names <- readr::read_csv("/Users/keletsomakofane/Documents/_gitrepos/mpxnyc/data-raw/nyc2020census_tract_nta_cdta_relationships.csv") |>
-  dplyr::mutate(GEOID = as.character(GEOID)) %>%
-  dplyr::select(GEOID, BoroName, NTAName) %>%
-  dplyr::rename(census_tract = GEOID, borough = BoroName, neighborhood = NTAName) %>%
-  data.frame
+  dplyr::mutate(GEOID = as.character(GEOID)) |>
+  dplyr::select(GEOID, BoroName, NTAName) |>
+  dplyr::rename(census_tract = GEOID, borough = BoroName, neighborhood = NTAName) |>
+  data.frame()
 
 
-borough_sf_obj <- sf::st_read("/Users/keletsomakofane/Documents/_gitrepos/mpxnyc/data-raw/nybb_22b/nybb.shp") %>%
-  dplyr::select(BoroName, geometry) %>%
+borough_sf_obj <- sf::st_read("/Users/keletsomakofane/Documents/_gitrepos/mpxnyc/data-raw/nybb_22b/nybb.shp") |>
+  dplyr::select(BoroName, geometry) |>
   dplyr::rename(borough = BoroName)
 
 
