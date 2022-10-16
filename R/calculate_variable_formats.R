@@ -27,9 +27,9 @@ clean_and_factor <- function(x) {
 }
 
   result <- data |>
-    dplyr::mutate(dplyr::across(dplyr::all_of(numeric_variables), as.numeric)) %>%
-    dplyr::mutate(dplyr::across(dplyr::all_of(logical_variables), as.logical)) %>%
-    dplyr::mutate(dplyr::across(dplyr::all_of(factor_variables), clean_and_factor)) %>%
+    dplyr::mutate(dplyr::across(dplyr::all_of(numeric_variables), as.numeric)) |>
+    dplyr::mutate(dplyr::across(dplyr::all_of(logical_variables), as.logical)) |>
+    dplyr::mutate(dplyr::across(dplyr::all_of(factor_variables), clean_and_factor)) |>
     dplyr::mutate(dplyr::across(dplyr::all_of(date_variables), as.Date))
 
   attr(result, "character_variables") <- character_variables
