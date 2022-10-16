@@ -5,7 +5,7 @@
 \alias{census_tract_sf_obj}
 \title{Census Tract SF Object}
 \format{
-An object of class \code{sf} (inherits from \code{data.frame}) with 85188 rows and 4 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 7569 rows and 4 columns.
 }
 \usage{
 census_tract_sf_obj

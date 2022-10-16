@@ -6,7 +6,6 @@
 #'
 #' @return data.frame with num_symptoms variable
 #'
-#' @examples
   calculate_symptomcount_variable <- function(data) {
 
     symptom_vars <- names(data[,grepl("symptom",names(data))])
