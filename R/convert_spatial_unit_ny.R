@@ -28,9 +28,9 @@ convert_spatial_unit_ny <- function(census_tract = NULL, neighborhood_name = NUL
 
 
 census_to_nbd_individual <- function(census_tract) {
-  int_data$neighborhood_names %>%
-    filter(GEOID %in% census_tract) %>%
-    pull(NTAName) %>%
+  neighborhood_names %>%
+    filter(census_tract %in% census_tract) %>%
+    pull(neighborhood) %>%
     {.[1]}
 }
 
@@ -39,8 +39,8 @@ census_to_nbd <- function(census_tract) {
 }
 
 census_to_boro_individual <- function(census_tract) {
-  int_data$neighborhood_names %>%
-    filter(GEOID %in% census_tract) %>%
+  neighborhood_names %>%
+    filter(census_tract %in% census_tract) %>%
     pull(BoroName)  %>%
     {.[1]}
 }
@@ -50,8 +50,8 @@ census_to_boro <- function(census_tract) {
 }
 
 nbd_to_boro_individual <- function(nbd) {
-  int_data$neighborhood_names %>%
-    filter(NTAName == nbd) %>%
+  neighborhood_names %>%
+    filter(neighborhood == nbd) %>%
     pull(BoroName) %>%
     {.[1]}
 }

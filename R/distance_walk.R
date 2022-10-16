@@ -13,14 +13,14 @@ distance.walk <- function(census_tract_from, census_tract_to, key="")  {
     if(key=="")
       key = getPass::getPass(msg = "Google API Key:")
 
-    centroids <- int_data$census_tract_centroids
+    centroids <- census_tract_centroids
 
-    if(!(census_tract_from %in% centroids$GEOID) | !(census_tract_to %in% centroids$GEOID))
-      stop("GEOIDs provided not in centroid file")
+    if(!(census_tract_from %in% centroids$census_tract) | !(census_tract_to %in% centroids$census_tract))
+      stop("census_tracts provided not in centroid file")
 
     api_res <- mapsapi::mp_directions(
-      origin = as.matrix(centroids %>% dplyr::filter(GEOID == census_tract_from) |> dplyr::select(lon, lat)),
-      destination  = as.matrix(centroids %>% dplyr::filter(GEOID == census_tract_to) |> dplyr::select(lon, lat)),
+      origin = as.matrix(centroids %>% dplyr::filter(census_tract == census_tract_from) |> dplyr::select(lon, lat)),
+      destination  = as.matrix(centroids %>% dplyr::filter(census_tract == census_tract_to) |> dplyr::select(lon, lat)),
       mode = "walking",
       key = key
     )

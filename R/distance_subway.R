@@ -12,19 +12,19 @@ distance.subway <- function(census_tract_from, census_tract_to, key="") {
   if(key=="")
     key = getPass::getPass(msg = "Google API Key:")
 
-  centroids <- int_data$census_tract_centroids
+  centroids <- census_tract_centroids
 
-  if(F %in% (c("GEOID", "lon", "lat") %in% colnames(centroids)))
-    stop("centroids file needs columns named 'GEOID', 'lon', 'lat'")
+  if(F %in% (c("census_tract", "lon", "lat") %in% colnames(centroids)))
+    stop("centroids file needs columns named 'census_tract', 'lon', 'lat'")
 
-  if(!(census_tract_from %in% centroids$GEOID) | !(census_tract_to %in% centroids$GEOID))
-    stop("GEOIDs provided not in centroid file")
+  if(!(census_tract_from %in% centroids$census_tract) | !(census_tract_to %in% centroids$census_tract))
+    stop("census_tracts provided not in centroid file")
 
-  centroids <- centroids %>% dplyr::select(GEOID, lon, lat)
+  centroids <- centroids %>% dplyr::select(census_tract, lon, lat)
 
   api_res <- mapsapi::mp_directions(
-    origin = as.matrix(centroids |> dplyr::filter(GEOID == census_tract_from) |> dplyr::select(lon, lat)),
-    destination  = as.matrix(centroids |> dplyr::filter(GEOID == census_tract_to) |> dplyr::select(lon, lat)),
+    origin = as.matrix(centroids |> dplyr::filter(census_tract == census_tract_from) |> dplyr::select(lon, lat)),
+    destination  = as.matrix(centroids |> dplyr::filter(census_tract == census_tract_to) |> dplyr::select(lon, lat)),
     mode = "transit",
     departure_time = lubridate::ymd_hms(paste0(as.character(Sys.Date() + lubridate::days(30)), " 19:00:00")),
     key = key

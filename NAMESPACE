@@ -2,7 +2,6 @@
 
 export(convert_spatial_unit_ny)
 export(descriptivetable)
-export(get_census_spacial_neighbors)
 export(get_person_data)
 export(get_place_data)
 export(travel_distance)
