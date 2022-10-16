@@ -12,11 +12,24 @@ census_tract_centroids <- census_tract_sf_obj |>
   (function(.) dplyr::select(., -c(geometry, coord)))()
 
 
-neighborhood_names <- readr::read_csv("/Users/keletsomakofane/Documents/_gitrepos/mpxnyc/data-raw/nyc2020census_tract_nta_cdta_relationships.csv") |>
+census_tract_to_boro_nbd_data <- readr::read_csv("/Users/keletsomakofane/Documents/_gitrepos/mpxnyc/data-raw/nyc2020census_tract_nta_cdta_relationships.csv") |>
   dplyr::mutate(GEOID = as.character(GEOID)) |>
   dplyr::select(GEOID, BoroName, NTAName) |>
   dplyr::rename(census_tract = GEOID, borough = BoroName, neighborhood = NTAName) |>
-  data.frame()
+  data.table::data.table() |>
+  data.table::setkey(census_tract)
+
+census_tract_to_nbd_vec         <- census_tract_to_boro_nbd_data$neighborhood
+names(census_tract_to_nbd_vec)  <- census_tract_to_boro_nbd_data$census_tract
+
+census_tract_to_boro_vec         <- census_tract_to_boro_nbd_data$borough
+names(census_tract_to_boro_vec)  <- census_tract_to_boro_nbd_data$census_tract
+
+nbd_to_boro_data <- census_tract_to_boro_nbd_data[,c("neighborhood", "borough")] |>
+  unique(by = "neighborhood")
+
+nbd_to_boro_vec               <- nbd_to_boro_data$borough
+names(nbd_to_boro_vec)        <- nbd_to_boro_data$neighborhood
 
 
 borough_sf_obj <- sf::st_read("/Users/keletsomakofane/Documents/_gitrepos/mpxnyc/data-raw/nybb_22b/nybb.shp") |>
@@ -28,9 +41,9 @@ neighborhood_sf_obj  <- sf::st_read("data-raw/NYC_NTA_shp") |>
   dplyr::rename(neighborhood = ntaname)
 
 
-usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,        internal=FALSE, overwrite=TRUE)
-usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,        internal=FALSE, overwrite=TRUE)
-usethis::use_data(borough_sf_obj, borough_sf_obj,                  internal=FALSE, overwrite=TRUE)
-usethis::use_data(census_tract_centroids, neighborhood_names,      internal=TRUE,  overwrite=TRUE)
+usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
+usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
+usethis::use_data(borough_sf_obj, borough_sf_obj,                                                                 internal=FALSE, overwrite=TRUE)
+usethis::use_data(census_tract_centroids, census_tract_to_nbd_vec, census_tract_to_boro_vec,  nbd_to_boro_vec,    internal=TRUE,  overwrite=TRUE)
 
 
