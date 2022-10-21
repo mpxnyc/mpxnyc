@@ -15,8 +15,13 @@ distance.walk <- function(census_tract_from, census_tract_to, key="")  {
 
     centroids <- census_tract_centroids
 
-    if(!(census_tract_from %in% centroids$census_tract) | !(census_tract_to %in% centroids$census_tract))
-      stop("census_tracts provided not in centroid file")
+    if(!(census_tract_from %in% centroids$census_tract) | !(census_tract_to %in% centroids$census_tract)){
+      warning("Location not within NYC, returning NA")
+      dist <- NA
+      dur <- NA
+      res <- c(dist, dur)
+      return(setNames(res, c("distance" , "duration")))
+    }
 
     api_res <- mapsapi::mp_directions(
       origin = as.matrix(centroids %>% dplyr::filter(census_tract == census_tract_from) |> dplyr::select(lon, lat)),
@@ -24,6 +29,14 @@ distance.walk <- function(census_tract_from, census_tract_to, key="")  {
       mode = "walking",
       key = key
     )
+
+    if(xml2::xml_text(xml2::xml_find_all(api_res, "//status")) != "OK"){
+      warning("Failed to get directions, returning NA")
+      dist <- NA
+      dur <- NA
+      res <- c(dist, dur)
+      return(setNames(res, c("distance" , "duration")))
+    }
 
     dist <- xml2::xml_double(xml2::xml_find_all(api_res, "//route/leg/distance/value"))
     dur <- xml2::xml_double(xml2::xml_find_all(api_res, "//route/leg/duration/value"))
