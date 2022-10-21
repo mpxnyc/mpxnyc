@@ -14,11 +14,17 @@ distance.subway <- function(census_tract_from, census_tract_to, key="") {
 
   centroids <- census_tract_centroids
 
-  if(F %in% (c("census_tract", "lon", "lat") %in% colnames(centroids)))
+  if(F %in% (c("census_tract", "lon", "lat") %in% colnames(centroids))){
     stop("centroids file needs columns named 'census_tract', 'lon', 'lat'")
+  }
 
-  if(!(census_tract_from %in% centroids$census_tract) | !(census_tract_to %in% centroids$census_tract))
-    stop("census_tracts provided not in centroid file")
+  if(!(census_tract_from %in% centroids$census_tract) | !(census_tract_to %in% centroids$census_tract)){
+    warning("Location not within NYC, returning NA")
+    dist <- NA
+    dur <- NA
+    res <- c(dist, dur)
+    return(setNames(res, c("distance" , "duration")))
+  }
 
   centroids <- centroids %>% dplyr::select(census_tract, lon, lat)
 
@@ -29,6 +35,14 @@ distance.subway <- function(census_tract_from, census_tract_to, key="") {
     departure_time = lubridate::ymd_hms(paste0(as.character(Sys.Date() + lubridate::days(30)), " 19:00:00")),
     key = key
   )
+
+  if(xml2::xml_text(xml2::xml_find_all(api_res, "//status")) != "OK"){
+    warning("Failed to get directions, returning NA")
+    dist <- NA
+    dur <- NA
+    res <- c(dist, dur)
+    return(setNames(res, c("distance" , "duration")))
+  }
 
   dist <- xml2::xml_double(xml2::xml_find_all(api_res, "//route/leg/distance/value"))
   dur <- xml2::xml_double(xml2::xml_find_all(api_res, "//route/leg/duration/value"))
