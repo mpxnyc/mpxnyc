@@ -8,7 +8,7 @@
 #' @return vector of distances
 #'
 
-distance.drive <- function(census_tract_from, census_tract_to, key="")  {
+distance.drive <- function(census_tract_from, census_tract_to, key="", quiet = T)  {
 
     if(key=="")
       key = getPass::getPass(msg = "Google API Key:")
@@ -24,6 +24,14 @@ distance.drive <- function(census_tract_from, census_tract_to, key="")  {
       return(setNames(res, c("distance" , "duration")))
     }
 
+    if(census_tract_from == census_tract_to){
+      warning("Origin and destination are the same, returning 0s")
+      dist <- 0
+      dur <- 0
+      res <- c(dist, dur)
+      return(setNames(res, c("distance" , "duration")))
+    }
+
     centroids <- centroids |> dplyr::select(census_tract, lon, lat)
 
 
@@ -33,7 +41,8 @@ distance.drive <- function(census_tract_from, census_tract_to, key="")  {
       destination  = as.matrix(centroids |> dplyr::filter(census_tract == census_tract_to) |> dplyr::select(lon, lat)),
       mode = "driving",
       departure_time = lubridate::ymd_hms("2023/10/25 19:00:00"),
-      key = key
+      key = key,
+      quiet = quiet
     )
 
     if(xml2::xml_text(xml2::xml_find_all(api_res, "//status")) != "OK"){
