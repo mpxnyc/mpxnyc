@@ -31,11 +31,5 @@ get_place_data <- function(limit=1, url = "https://core01.respndmi.app:7473", us
     purrr::pluck() |>
     lapply(function(x) dplyr::pull(x, value)) |>
     data.frame() |>
-    dplyr::mutate(
-      censusTractHome = as.character(censusTractHome),
-      censusTractPlace = as.character(censusTractPlace),
-      placeType = as.factor(placeType),
-      placeFreqAttend = as.numeric(placeFreqAttend),
-      placeFreqHaveSex = as.numeric(placeFreqHaveSex)
-      )
+    calculate_variable_formats()
 }

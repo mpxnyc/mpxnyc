@@ -74,7 +74,6 @@ get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", u
       calculate_symptomcount_variable() |>
       calculate_gender_variable() |>
       calculate_race_variable() |>
-      calculate_variable_formats() |>
       calculate_variable_formats()
   }
 

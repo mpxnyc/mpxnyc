@@ -32,9 +32,12 @@ clean_and_factor <- function(x) {
     dplyr::mutate(dplyr::across(dplyr::any_of(logical_variables), as.logical)) |>
     dplyr::mutate(dplyr::across(dplyr::any_of(factor_variables), clean_and_factor)) |>
     dplyr::mutate(dplyr::across(dplyr::any_of(date_variables), as.Date)) |>
-    dplyr::mutate(channel_names = factor(channel,
-                                   c("pt", "gs", "tw", "ig", "gr", "fr", "em", "cm", "lnyc"),
-                                   c("partner_toolkit", "google_search", "twitter", "instagram", "grindr", "ferry", "earned_media", "cameo_promotion", "link_nyc")))
+    dplyr::mutate(dplyr::across(dplyr::any_of(c("channel")), function(x) {factor(
+                                                                                  x,
+                                                                                  c("pt", "gs", "tw", "ig", "gr", "fr", "em", "cm", "lnyc"),
+                                                                                  c("partner_toolkit", "google_search", "twitter", "instagram", "grindr", "ferry", "earned_media", "cameo_promotion", "link_nyc")
+                                                                                    )}))
+
 
   attr(result, "character_variables") <- character_variables
   attr(result, "numeric_variables")   <- numeric_variables
