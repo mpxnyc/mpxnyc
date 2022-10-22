@@ -35,7 +35,7 @@ clean_and_factor <- function(x) {
     dplyr::mutate(dplyr::across(dplyr::any_of(c("channel")), function(x) {factor(
                                                                                   x,
                                                                                   c("9999", "pt", "gs", "tw", "ig", "gr", "fr", "em", "cm", "lnyc"),
-                                                                                  c("unkown", "partner_toolkit", "google_search", "twitter", "instagram", "grindr", "ferry", "earned_media", "cameo_promotion", "link_nyc")
+                                                                                  c("unknown", "partner_toolkit", "google_search", "twitter", "instagram", "grindr", "ferry", "earned_media", "cameo_promotion", "link_nyc")
                                                                                     )}))
 
 
