@@ -4,7 +4,7 @@
 \alias{distance.walk}
 \title{Walking Distance}
 \usage{
-distance.walk(census_tract_from, census_tract_to, key = "")
+distance.walk(census_tract_from, census_tract_to, key = "", quiet = T)
 }
 \arguments{
 \item{census_tract_from}{Origin census tract}
