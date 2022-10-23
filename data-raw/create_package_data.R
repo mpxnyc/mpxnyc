@@ -41,6 +41,8 @@ neighborhood_sf_obj  <- sf::st_read("data-raw/NYC_NTA_shp") |>
   dplyr::rename(neighborhood = ntaname)
 
 
+
+
 usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(borough_sf_obj, borough_sf_obj,                                                                 internal=FALSE, overwrite=TRUE)
