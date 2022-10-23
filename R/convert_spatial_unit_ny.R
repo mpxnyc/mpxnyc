@@ -13,7 +13,7 @@
 convert_spatial_unit_ny <- function(input_census_tract = NULL, input_neighborhood_name = NULL,
                                     input_community_district = NULL, convert_to="neighborhood") {
 
-  if (sum(is.null(input_census_tract), is.null(input_neighborhood_name), is.null(input_community_district)) > 1) stop("Use only one input paramter!")
+  if (sum(!is.null(input_census_tract), !is.null(input_neighborhood_name), !is.null(input_community_district)) > 1) stop("Use only one input paramter!")
 
   if (is.null(input_census_tract) & is.null(input_neighborhood_name) & is.null(input_community_district)) stop("Use input parameter census_tract or neighborhood_name or community_district.")
 
