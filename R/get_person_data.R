@@ -74,7 +74,57 @@ get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", u
       calculate_symptomcount_variable() |>
       calculate_gender_variable() |>
       calculate_race_variable() |>
-      calculate_variable_formats()
+      calculate_variable_formats() |>
+      sjlabelled::set_label(label = c("User Identifier",
+                                      "Where in the city do you live? Tap on the map to show your home.",
+                                      "How old are you?",
+                                      "What question do you wish we had asked in the survey?",
+                                      "What is your sex assigned at birth?",
+                                      "Recruitment Channel",
+                                      "How many queer and trans friends do you have who are important to you for any reason? Count only those you have been in touch with over the past 4 weeks.",
+                                      "How many individuals have you had prolonged physical contact (but no sexual contact) with in the past 4 weeks, excluding group settings?",
+                                      "How many individuals have you had sex with in the past 4 weeks, excluding group sex partners?",
+                                      "In the past 4 weeks, did you test positive for COVID-19?",
+                                      "Timestamp",
+                                      "What is your gender identity?",
+                                      "Over the past 4 weeks, have you had sex with two or more people at the same time or had close physical contact with multiple people at the same time? (like at a party, sport game, concert, show)",
+                                      "Are you on PrEP?",
+                                      "What is your HIV status?",
+                                      "Have you been told that your viral load is suppressed or undetectable?",
+                                      "Did you receive care by a medical provider for your symptoms?",
+                                      "In the past 4 weeks, did you receive testing for monkeypox?",
+                                      "Have you received at least 1 dose of the monkeypox vaccine?",
+                                      "What’s your race and/or ethnicity?: Asian",
+                                      "What’s your race and/or ethnicity?: Black",
+                                      "What’s your race and/or ethnicity?: Pacific Islander",
+                                      "What’s your race and/or ethnicity?: White",
+                                      "What’s your race and/or ethnicity?: Latino/a/x",
+                                      "What’s your race and/or ethnicity?: Other",
+                                      "What kind of referral into survey?",
+                                      "Did the referrer answer their suryve in English?",
+                                      "Have you taken the MPX NYC survey before?",
+                                      "What is your sexual orientation?",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Fever",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Body Rash",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Chills",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Exhaustion",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Facial Rash",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Fever",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Headache",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Sores in or around the mouth",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Muscle ache",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Other",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Rectal Discomfort",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Sores on the penis",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Sore Throat",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Sores in the buttocks or anus",
+                                      "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Swollen glands",
+                                      "By the way, how long are you willing to travel to hook up?",
+                                      "When were you vaccinated against monkeypox?",
+                                      "Number of symptoms (calculated)",
+                                      "Gender Identity (calculated)",
+                                      "Race (calculated)"))
+
   }
 
 

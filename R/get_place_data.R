@@ -31,5 +31,14 @@ get_place_data <- function(limit=1, url = "https://core01.respndmi.app:7473", us
     purrr::pluck() |>
     lapply(function(x) dplyr::pull(x, value)) |>
     data.frame() |>
-    calculate_variable_formats()
+    calculate_variable_formats() |>
+    sjlabelled::set_label(label = c("user Identifier",
+                                    "Where in the city do you live? Tap on the map to show your home.",
+                                    "Over the past 4 weeks, where have you had sex with two or more people at the same time or had close physical contact with multiple people at the same time? Place a pin on the location by tapping the map.",
+                                    "Time stamp",
+                                    "What kind of place is this?",
+                                    "Did you have sexual contact while at this venue?",
+                                    "Over the past 4 weeks, how many times have you attended this venue?",
+                                    "Over the past 4 weeks, how many times have you had sexual contact at this venue?"))
+
 }

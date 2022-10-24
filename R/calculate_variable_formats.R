@@ -39,11 +39,14 @@ clean_and_factor <- function(x) {
                                                                                     )}))
 
 
+
   attr(result, "character_variables") <- character_variables
   attr(result, "numeric_variables")   <- numeric_variables
   attr(result, "date_variables")      <- date_variables
   attr(result, "logical_variables")   <- logical_variables
   attr(result, "summary_variables")   <- summary_variables
+
+
 
   return(result)
 

@@ -72,6 +72,8 @@ community_sf_obj <- sf::st_simplify(community_sf_obj,
                                     dTolerance = 200)
 
 
+
+
 usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(borough_sf_obj, borough_sf_obj,                                                                 internal=FALSE, overwrite=TRUE)
