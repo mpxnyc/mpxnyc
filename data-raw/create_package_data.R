@@ -71,12 +71,12 @@ community_sf_obj <- sf::st_simplify(community_sf_obj,
                                     preserveTopology = T,
                                     dTolerance = 200)
 
-usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                           internal=FALSE, overwrite=TRUE)
-usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                           internal=FALSE, overwrite=TRUE)
-usethis::use_data(borough_sf_obj, borough_sf_obj,                                                     internal=FALSE, overwrite=TRUE)
-usethis::use_data(community_sf_obj, community_sf_obj,                                                 internal=FALSE, overwrite=TRUE)
-usethis::use_data(census_tract_centroids, census_tract_to_nbd_vec,
-                  census_tract_to_boro_vec, census_tract_to_cmnty_vec,
-                  nbd_to_cmnty_vec, nbd_to_boro_vec, cmnty_to_boro_vec,                               internal=TRUE,  overwrite=TRUE)
+
+usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
+usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
+usethis::use_data(borough_sf_obj, borough_sf_obj,                                                                 internal=FALSE, overwrite=TRUE)
+usethis::use_data(census_tract_centroids, census_tract_to_nbd_vec, census_tract_to_boro_vec, census_tract_to_cmnty_vec,
+                  nbd_to_cmnty_vec, nbd_to_boro_vec, cmnty_to_boro_vec,                                           internal=TRUE,  overwrite=TRUE)
+
 
 
