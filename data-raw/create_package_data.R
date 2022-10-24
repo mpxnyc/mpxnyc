@@ -47,18 +47,29 @@ cmnty_to_boro_vec               <- cmnty_to_boro_data$borough
 names(cmnty_to_boro_vec)        <- cmnty_to_boro_data$neighborhood
 
 
-borough_sf_obj <- sf::st_read("/data-raw/nybb_22b/nybb.shp") |>
+borough_sf_obj <- sf::st_read("data-raw/nybb_22b/nybb.shp") |>
   dplyr::select(BoroName, geometry) |>
   dplyr::rename(borough = BoroName)
+
+borough_sf_obj <- sf::st_simplify(borough_sf_obj,
+                                  preserveTopology = T,
+                                  dTolerance = 200)
 
 neighborhood_sf_obj  <- sf::st_read("data-raw/NYC_NTA_shp") |>
   dplyr::select(ntaname) |>
   dplyr::rename(neighborhood = ntaname)
 
+neighborhood_sf_obj <- sf::st_simplify(neighborhood_sf_obj,
+                                       preserveTopology = T,
+                                       dTolerance = 200)
+
 community_sf_obj  <- sf::st_read("data-raw/nycdta2020_22b/") |>
   dplyr::select(CDTA2020) |>
   dplyr::rename(community = CDTA2020)
 
+community_sf_obj <- sf::st_simplify(community_sf_obj,
+                                    preserveTopology = T,
+                                    dTolerance = 200)
 
 usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                           internal=FALSE, overwrite=TRUE)
 usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                           internal=FALSE, overwrite=TRUE)
