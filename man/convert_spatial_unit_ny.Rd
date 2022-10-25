@@ -7,19 +7,22 @@
 convert_spatial_unit_ny(
   input_census_tract = NULL,
   input_neighborhood_name = NULL,
+  input_community_district = NULL,
   convert_to = "neighborhood"
 )
 }
 \arguments{
-\item{input_census_tract}{Vector (character) of input census tracts to convert to neighborhoods or boroughs}
+\item{input_census_tract}{Vector (character) of input census tracts to convert to neighborhoods or boroughs or community districts}
 
-\item{input_neighborhood_name}{Vector (character) of input neighborhoods to convert to boroughs}
+\item{input_neighborhood_name}{Vector (character) of input neighborhoods to convert to neighborhoods or boroughs}
 
-\item{convert_to}{String showing how to convert census_tracts. Options are "neighborhood" (default) and "borough"}
+\item{input_community_district}{Vector (character) of input communities to convert to boroughs}
+
+\item{convert_to}{String showing how to convert census_tracts. Options are "neighborhood" (default), "community", and "borough"}
 }
 \value{
 Vector (character) of neighborhood or borrough names
 }
 \description{
-Convert to parent spatial unit in hierarchy: borough > neighborhood > census_tract
+Convert to parent spatial unit in hierarchy: borough > community > neighborhood > census_tract
 }
