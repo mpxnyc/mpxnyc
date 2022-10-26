@@ -4,7 +4,7 @@
 \alias{distance.drive}
 \title{Drive Distance}
 \usage{
-distance.drive(census_tract_from, census_tract_to, key = "")
+distance.drive(census_tract_from, census_tract_to, key = "", quiet = T)
 }
 \arguments{
 \item{census_tract_from}{Origin census tract}
