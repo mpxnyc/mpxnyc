@@ -101,7 +101,7 @@ get_person_data <- function(limit=1, url = "https://core01.respndmi.app:7473", u
                                       "What’s your race and/or ethnicity?: Latino/a/x",
                                       "What’s your race and/or ethnicity?: Other",
                                       "What kind of referral into survey?",
-                                      "Did the referrer answer their suryve in English?",
+                                      "Did the referrer answer their survey in English?",
                                       "Have you taken the MPX NYC survey before?",
                                       "What is your sexual orientation?",
                                       "In the past 4 weeks, have you experienced symptoms that are not related to a confirmed COVID-19 infection?: Fever",
