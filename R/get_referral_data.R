@@ -18,7 +18,8 @@ get_referral_data <- function(limit=1, url = "https://core01.respndmi.app:7473",
     "MATCH (e:Person)-[z:HANGOUT_WITH]->(f:Person)",
     "WITH [{sender: a.userId, receiver: b.userId, createdAt: x.createdAt, type: 'FRIENDS_WITH'}, {sender: c.userId, receiver: d.userId, createdAt: y.createdAt, type: 'HAD_SEX_WITH'}, {sender: e.userId, receiver: f.userId, createdAt: z.createdAt,type: 'HANGOUT_WITH'}] as list",
     "UNWIND list as object",
-    "RETURN object.createdAt as createdAt, object.sender as sender, object.receiver as reciever, object.type as type",
+    "WITH DISTINCT object.createdAt as createdAt, object.sender as sender, object.receiver as reciever, object.type as type",
+    "RETURN createdAt,  sender,  reciever,  type",
     "LIMIT ", limit
   ) |>
 

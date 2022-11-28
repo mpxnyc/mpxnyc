@@ -9,7 +9,7 @@
 #' @return data.frame Person-to-person referral data
 #' @export
 #'
-backup_data <- function(directory="", limit=1000000, url = "https://core01.respndmi.app:7473", user = "mp_read_user", password = ""){
+backup_data <- function(directory="", limit="1000000", url = "https://core01.respndmi.app:7473", user = "mp_read_user", password = ""){
 
   if (directory == "") stop("Please specify directory")
   if (password == "") password = getPass::getPass(msg = "Neo4j Password:")
@@ -19,6 +19,7 @@ backup_data <- function(directory="", limit=1000000, url = "https://core01.respn
   referral_data <- get_referral_data(limit = limit, url = url, user = user, password = password)
 
   backup_data <- list(person_data = person_data, place_data = place_data, referral_data = referral_data)
+
   saveRDS(backup_data, file = paste0(directory, "/mpxnyc_backup_data.R"))
 
 
