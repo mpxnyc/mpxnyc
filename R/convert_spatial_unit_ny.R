@@ -10,8 +10,10 @@
 #' @return Vector (character) of neighborhood or borrough names
 #' @export
 #'
-convert_spatial_unit_ny <- function(input_census_tract = NULL, input_neighborhood_name = NULL,
-                                    input_community_district = NULL, convert_to="neighborhood") {
+convert_spatial_unit_ny <- function(input_census_tract = NULL,
+                                    input_neighborhood_name = NULL,
+                                    input_community_district = NULL,
+                                    convert_to="neighborhood") {
 
   if (sum(!is.null(input_census_tract), !is.null(input_neighborhood_name), !is.null(input_community_district)) > 1) stop("Use only one input paramter!")
 
@@ -50,8 +52,8 @@ census_to_cmnty <- function(input_census_tract) {
   result
 }
 
-nbd_to_cmnty <- function(input_community_name) {
-  result <- census_tract_to_cmnty_vec[input_census_tract]
+nbd_to_cmnty <- function(input_neighborhood_name) {
+  result <- nbd_to_cmnty_vec[input_neighborhood_name]
   names(result) <- NULL
   result
 }

@@ -44,7 +44,7 @@ cmnty_to_boro_data <- census_tract_to_boro_nbd_data[,c("community", "borough")] 
   unique(by = "community")
 
 cmnty_to_boro_vec               <- cmnty_to_boro_data$borough
-names(cmnty_to_boro_vec)        <- cmnty_to_boro_data$neighborhood
+names(cmnty_to_boro_vec)        <- cmnty_to_boro_data$community
 
 
 borough_sf_obj <- sf::st_read("data-raw/nybb_22b/nybb.shp") |>
