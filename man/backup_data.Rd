@@ -6,7 +6,7 @@
 \usage{
 backup_data(
   directory = "",
-  limit = 1,
+  limit = "1000000",
   url = "https://core01.respndmi.app:7473",
   user = "mp_read_user",
   password = ""

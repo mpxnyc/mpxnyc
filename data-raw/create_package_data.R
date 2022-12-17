@@ -72,13 +72,29 @@ community_sf_obj <- sf::st_simplify(community_sf_obj,
                                     dTolerance = 200)
 
 
+shape_list <- list()
 
+shape_list$censustract <- mpxnyc::census_tract_sf_obj |>
+  dplyr::transmute(identifier = census_tract)
+
+shape_list$neighborhood <- mpxnyc::neighborhood_sf_obj|>
+  dplyr::transmute(identifier = neighborhood)
+
+shape_list$community <- mpxnyc::community_sf_obj |>
+  dplyr::transmute(identifier = community)
+
+shape_list$borough <- mpxnyc::borough_sf_obj |>
+  dplyr::transmute(identifier = borough)
+
+shape_list <-
+  lapply(shape_list, function(x)
+    sf::st_transform(x = x, crs = sf::st_crs(census_tract_sf_obj)))
 
 usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(borough_sf_obj, borough_sf_obj,                                                                 internal=FALSE, overwrite=TRUE)
 usethis::use_data(census_tract_centroids, census_tract_to_nbd_vec, census_tract_to_boro_vec, census_tract_to_cmnty_vec,
-                  nbd_to_cmnty_vec, nbd_to_boro_vec, cmnty_to_boro_vec,                                           internal=TRUE,  overwrite=TRUE)
+                  nbd_to_cmnty_vec, nbd_to_boro_vec, cmnty_to_boro_vec, shape_list,                               internal=TRUE,  overwrite=TRUE)
 
 
 
