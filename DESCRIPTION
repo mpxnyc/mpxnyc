@@ -23,7 +23,6 @@ Imports:
     jsonlite,
     lubridate,
     mapsapi,
-    mpxnyc,
     neo4r,
     purrr,
     sf,
