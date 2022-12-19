@@ -1,4 +1,4 @@
-#' Plot Network Graph
+#' Plot Network Map
 #'
 #' @param graph_type Spatial Partitioning. Default "community". Other options are "censustract", "neighborhood", and "borough
 #' @param weight_threshold Display parameter (numeric). Default 1.
@@ -51,7 +51,7 @@ plot_map_graph <-
       map_within_community = map_within_community,
       map_within_borough = map_within_borough,
       places_data = places_data
-    ) %>%
+    ) |>
       create_network_map()
 
     mapdata_full <- make_graph(
@@ -63,7 +63,7 @@ plot_map_graph <-
       map_within_community = map_within_community,
       map_within_borough = map_within_borough,
       places_data = places_data
-    ) %>%
+    ) |>
       create_network_map()
 
     result <- ggplot2::ggplot() +
