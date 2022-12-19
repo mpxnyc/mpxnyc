@@ -103,5 +103,7 @@ plot_map_graph <-
         plot.title = ggplot2::element_text(hjust = 0.5, family = "Helvetica"),
         plot.subtitle = ggplot2::element_text(hjust = 0.5, family = "Helvetica"))
 
+    return(cowplot::ggdraw(p))
+
 
   }
