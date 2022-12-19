@@ -91,8 +91,8 @@ plot_map_graph <-
 
     if (!is.null(mapping_points) | !is.null(options_points)){
 
-      options_points$data <- mapdata_full$nodes %>% sf::st_centroid()
-      result <- result + do.call(ggplot2::geom_sf, options_points) + do.call(ggplot2::geom_sf, list(mapping = mapping_points, data = mapdata$nodes %>% sf::st_centroid(), color = "#5D207A"))
+      options_points$data <- mapdata_full$nodes |> sf::st_centroid()
+      result <- result + do.call(ggplot2::geom_sf, options_points) + do.call(ggplot2::geom_sf, list(mapping = mapping_points, data = mapdata$nodes |> sf::st_centroid(), color = "#5D207A"))
     }
 
 
