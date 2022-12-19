@@ -32,18 +32,18 @@ make_graph <-
       tidygraph::activate(edges) |>
       dplyr::filter(weight >= weight_threshold) |>
       tidygraph::activate(nodes)  |>
-      dplyr::left_join(shape_list[[graph_type]], by = c("name" = "identifier")) |>
-      dplyr::filter(degree >= degree_threshold) |>
-      {function(x) dplyr::mutate(x, component = igraph::components(x)$membership[name]) }() |>
-      {function(x) dplyr::mutate(x, componentSize =  igraph::components(x)$csize[component]) }() |>
-      dplyr::mutate(componentName = ifelse(
+      tidygraph::left_join(shape_list[[graph_type]], by = c("name" = "identifier")) |>
+      tidygraph::filter(degree >= degree_threshold) |>
+      {function(x) tidygraph::mutate(x, component = igraph::components(x)$membership[name]) }() |>
+      {function(x) tidygraph::mutate(x, componentSize =  igraph::components(x)$csize[component]) }() |>
+      tidygraph::mutate(componentName = ifelse(
         componentSize > 1,
         paste("Component", component),
         paste("Component Others")
       )) |>
       tidygraph::arrange(name) |>
       tidygraph::activate(edges) |>
-      dplyr::mutate(componentName = tidygraph::.N()$componentName[from])
+      tidygraph::mutate(componentName = tidygraph::.N()$componentName[from])
 
 
   }
