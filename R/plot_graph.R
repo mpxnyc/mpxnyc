@@ -28,7 +28,7 @@ plot_graph <-
     options_lines$mapping <- mapping_lines
     options_points$mapping <- mapping_points
 
-    graph %>%
+    graph |>
       ggraph::ggraph(layout = "igraph", algorithm = "fr") +
       do.call(ggraph::geom_edge_link, options_lines) +
       do.call(ggraph::geom_node_point, options_points) +

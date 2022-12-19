@@ -145,12 +145,12 @@ collapse_graph <-
 
 
     if (graph_type == "borough") {
-      new_nodes <- nodes %>%
-        dplyr::group_by(borough) %>%
-        dplyr::summarize() %>%
+      new_nodes <- nodes |>
+        dplyr::group_by(borough) |>
+        dplyr::summarize() |>
         dplyr::mutate(name = borough)
 
-      new_edges <- edges %>%
+      new_edges <- edges |>
         dplyr::mutate(
           from = ifelse(from_borough < to_borough,
                         from_borough,
@@ -158,38 +158,38 @@ collapse_graph <-
           to   = ifelse(from_borough < to_borough,
                         to_borough,
                         from_borough)
-        ) %>%
-        dplyr::group_by(from, to) %>%
+        ) |>
+        dplyr::group_by(from, to) |>
         dplyr::summarize(weight            = sum(weight))
 
     }
 
 
-    result_graph <- tidygraph::tbl_graph(nodes = new_nodes, edges = new_edges) %>%
-      tidygraph::activate(edges) %>%
+    result_graph <- tidygraph::tbl_graph(nodes = new_nodes, edges = new_edges) |>
+      tidygraph::activate(edges) |>
       dplyr::filter(from != to)
 
 
     if (!is.null(map_within_neighborhood) & graph_type == "censustract") {
-      result_graph <- result_graph %>%
-        tidygraph::activate(edges) %>%
+      result_graph <- result_graph |>
+        tidygraph::activate(edges) |>
         dplyr::filter(within_neighborhood == map_within_neighborhood)
     }
 
     if (!is.null(map_within_community) & graph_type %in% c("censustract", "neighborhood")) {
-      result_graph <- result_graph %>%
-        tidygraph::activate(edges) %>%
+      result_graph <- result_graph |>
+        tidygraph::activate(edges) |>
         dplyr::filter(within_community == map_within_community)
     }
 
     if (!is.null(map_within_borough) & graph_type %in% c("censustract", "neighborhood", "community")) {
-      result_graph <- result_graph %>%
-        dplyr::activate(edges) %>%
+      result_graph <- result_graph |>
+        dplyr::activate(edges) |>
         dplyr::filter(within_borough == map_within_borough)
     }
 
 
-    result_graph %>%
-      tidygraph::activate(nodes) %>%
+    result_graph |>
+      tidygraph::activate(nodes) |>
       dplyr::mutate(degree = igraph::strength(.))
   }

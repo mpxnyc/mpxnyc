@@ -1,4 +1,4 @@
-geom_lolipop <- function(data, variables) {
+plot_lolipop <- function(data, variables) {
 
 
     data$variable <- data[[variables[var]]]
