@@ -191,6 +191,6 @@ collapse_graph <-
 
     result_graph |>
       tidygraph::activate(nodes) |>
-      {function(x) dplyr::mutate(degree = igraph::strength(x))}()
+      {function(x) dplyr::mutate(x, degree = igraph::strength(x))}()
 
   }
