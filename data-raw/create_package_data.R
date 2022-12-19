@@ -88,7 +88,8 @@ shape_list$borough <- mpxnyc::borough_sf_obj |>
 
 shape_list <-
   lapply(shape_list, function(x)
-    sf::st_transform(x = x, crs = sf::st_crs(census_tract_sf_obj)))
+    sf::st_transform(x = x, crs = sf::st_crs(census_tract_sf_obj))) |>
+  lapply(data.frame)
 
 usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
