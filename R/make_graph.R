@@ -34,8 +34,8 @@ make_graph <-
       tidygraph::activate(nodes)  |>
       dplyr::left_join(shape_list[[graph_type]], by = c("name" = "identifier")) |>
       dplyr::filter(degree >= degree_threshold) |>
-      dplyr::mutate(component = igraph::components(.)$membership[name]) |>
-      dplyr::mutate(componentSize =  igraph::components(.)$csize[component]) |>
+      {function(x) dplyr::mutate(x, component = igraph::components(x)$membership[name]) }() |>
+      {function(x) dplyr::mutate(x, componentSize =  igraph::components(x)$csize[component]) }() |>
       dplyr::mutate(componentName = ifelse(
         componentSize > 1,
         paste("Component", component),
