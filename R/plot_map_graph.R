@@ -97,7 +97,7 @@ plot_map_graph <-
 
 
 
-    result +
+    p <- result +
       ggplot2::labs(title = "MPX NYC Group Sex Connection Patterns", subtitle = paste0("Degree Threshold = ", degree_threshold, " || Map Type = '", graph_type, "'")) +
       ggplot2::theme(
         plot.title = ggplot2::element_text(hjust = 0.5, family = "Helvetica"),
