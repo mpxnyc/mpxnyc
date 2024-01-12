@@ -1,5 +1,3 @@
-
-
 #' Plot Radar Graph
 #'
 #' @param data plot data
@@ -8,7 +6,6 @@
 #' @return ggplot object
 #' @export
 #'
-#' @examples
 plot_radar_graphic <- function(data, list_labels) {
 
   main_plots_list        <- list_labels %>%
