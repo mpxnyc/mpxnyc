@@ -6,7 +6,7 @@
 #' @param person_data Logical variable indicating whether person or place data are to be used
 #'
 #' @return Tibble
-#'
+#' @export
 #' @examples make_table_1_datatable(bipartite_graph_sim, by = groupSex, variables = c(age, genderId), person_data = TRUE)
 #'
 make_table_1_datatable <- function(bipartite_graph_sim, by = groupSex, variables = c(age, genderId), person_data = TRUE){
