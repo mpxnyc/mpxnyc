@@ -26,6 +26,7 @@ Imports:
     mapsapi,
     neo4r,
     purrr,
+    scales,
     sf,
     sjlabelled,
     spdep,

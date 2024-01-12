@@ -6,7 +6,6 @@
 #' @param person_data Logical variable indicating whether person or place data are to be used
 #'
 #' @return Tibble
-#' @export
 #'
 #' @examples make_table_1_datatable(bipartite_graph_sim, by = groupSex, variables = c(age, genderId), person_data = TRUE)
 #'
@@ -19,45 +18,45 @@ make_table_1_datatable <- function(bipartite_graph_sim, by = groupSex, variables
 
   if (person_data){
     working_data       <- bipartite_graph_sim %>%
-      tidygraph::activate(nodes) %>%
-      tidygraph::filter(type == person_data) %>%
-      data.frame() %>%
-      dplyr::tibble()
+                                tidygraph::activate(nodes) %>%
+                                tidygraph::filter(type == person_data) %>%
+                                data.frame() %>%
+                                dplyr::tibble()
 
 
   } else {
     working_data       <- bipartite_graph_sim %>%
-      tidygraph::activate(edges) %>%
-      data.frame() %>%
-      dplyr::tibble()
+                                tidygraph::activate(edges) %>%
+                                data.frame() %>%
+                                dplyr::tibble()
 
 
   }
 
 
   names_by                    <- working_data %>%
-    dplyr::select({{by}}) %>%
-    names()
+                                      dplyr::select({{by}}) %>%
+                                      names()
 
   names_variables             <- working_data %>%
-    dplyr::select({{variables}}) %>%
-    names()
+                                      dplyr::select({{variables}}) %>%
+                                      names()
 
   n_reps                      <- attr(bipartite_graph_sim, "n_reps")
 
 
   result                      <-  lapply(
-    seq(n_reps),
-    FUN = function(current_rep) {
+                                        seq(n_reps),
+                                        FUN = function(current_rep) {
 
-      result <- working_data %>%
-        dplyr::filter(rep == current_rep) %>%
-        make_table_1_datatable_single(by = {{by}}, variables = {{variables}}) %>%
-        dplyr::mutate(rep = current_rep)
+                                          result <- working_data %>%
+                                            dplyr::filter(rep == current_rep) %>%
+                                            make_table_1_datatable_single(by = {{by}}, variables = {{variables}}) %>%
+                                            dplyr::mutate(rep = current_rep)
 
 
-      return(result)
-    }
+                                          return(result)
+                                        }
   ) %>%
     dplyr::bind_rows() %>%
     dplyr::group_by(.dots = c(paste0(rep("stratum_", length(names_by)), names_by), "level", "variable")) %>%
@@ -82,52 +81,50 @@ make_table_1_datatable_single <- function(data, by, variables){
   variables = rlang::enquo(variables)
   by        = rlang::enquo(by)
 
-  names_by <- data %>%
-    select({{by}}) %>%
-    names()
+  names_by          <- data %>%
+                          dplyr::select({{by}}) %>%
+                          names()
 
-  names_variables <- data %>%
-    select({{variables}}) %>%
-    names()
-
+  names_variables   <- data %>%
+                          dplyr::select({{variables}}) %>%
+                          names()
 
   working_data <- data
 
-
   names_variables %>%
-    map(
+    purrr::map(
       function(variable) {
-        table_data <- working_data %>%
-          select(any_of(c(names_by, variable))) %>%
-          table()
+        table_data          <- working_data %>%
+                                        dplyr::select(any_of(c(names_by, variable))) %>%
+                                        table()
 
 
-        counts <- table_data %>%
-          as.data.frame() %>%
-          set_names(c(paste0(rep("stratum_", length(names_by)), names_by), "level", "count")) %>%
-          mutate(variable = variable) %>%
-          select(variable, level, names(.))
+        counts              <- table_data %>%
+                                        as.data.frame() %>%
+                                        rlang::set_names(c(paste0(rep("stratum_", length(names_by)), names_by), "level", "count")) %>%
+                                        dplyr::mutate(variable = variable) %>%
+                                        dplyr::select(variable, level, names(.))
 
-        props <- table_data %>%
-          prop.table(seq_along(names_by)) %>%
-          as.data.frame() %>%
-          set_names(c(paste0(rep("stratum_", length(names_by)), names_by), "level", "proportion")) %>%
-          mutate(variable = variable) %>%
-          select(variable, level, names(.))
+        props               <- table_data %>%
+                                        prop.table(seq_along(names_by)) %>%
+                                        as.data.frame() %>%
+                                        rlang::set_names(c(paste0(rep("stratum_", length(names_by)), names_by), "level", "proportion")) %>%
+                                        dplyr::mutate(variable = variable) %>%
+                                        dplyr::select(variable, level, names(.))
 
 
-        result <- counts %>%
-          left_join(props)
+        result               <- counts %>%
+                                        dplyr::left_join(props)
 
 
         result
 
       }) %>%
-    bind_rows() %>%
-    arrange(level) %>%
-    arrange_(paste0("stratum_", names_by)) %>%
-    select(contains("stratum"), names(.)) %>%
-    arrange(variable)
+    dplyr::bind_rows() %>%
+    dplyr::arrange(level) %>%
+    dplyr::arrange_(paste0("stratum_", names_by)) %>%
+    dplyr::select(contains("stratum"), names(.)) %>%
+    dplyr::arrange(variable)
 
 }
 
