@@ -22,12 +22,12 @@ plot_radar_legend_single <- function(data, variable_name, list_labels) {
           panel.grid.major.x = ggplot2::element_line(size = 0.1)) +
     ggplot2::scale_fill_manual(
       values = c(
-        colors$dark_blue,
-        colors$dark_pink,
-        colors$dark_purple,
-        colors$light_blue,
-        colors$light_pink,
-        colors$light_purple
+        mpxnyc_colors$dark_blue,
+        mpxnyc_colors$dark_pink,
+        mpxnyc_colors$dark_purple,
+        mpxnyc_colors$light_blue,
+        mpxnyc_colors$light_pink,
+        mpxnyc_colors$light_purple
       )
     ) +
     ggplot2::scale_x_discrete(drop = FALSE) +
