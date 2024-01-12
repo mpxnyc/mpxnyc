@@ -6,7 +6,6 @@
 #' @return kable Table
 #' @export
 #'
-
 draw_table_1 <- function(data_table, list_labels){
 
   variables         <- data_table %>%
