@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_map_graph.R
 \name{plot_map_graph}
 \alias{plot_map_graph}
-\title{Plot Network Graph}
+\title{Plot Network Map}
 \usage{
 plot_map_graph(
   graph_type = "community",
@@ -61,5 +61,5 @@ plot_map_graph(
 ggplot object
 }
 \description{
-Plot Network Graph
+Plot Network Map
 }
