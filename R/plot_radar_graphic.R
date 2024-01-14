@@ -1,4 +1,4 @@
-#' Plot Radar Graph
+#'Demographics by Stratum Radar Plot
 #'
 #' @param data plot data
 #' @param list_labels labels
@@ -6,7 +6,7 @@
 #' @return ggplot object
 #' @export
 #'
-plot_radar_graphic <- function(data, list_labels) {
+plot_radar_demographics_by_stratum <- function(data, list_labels) {
 
   main_plots_list        <- list_labels %>%
                                   names() %>%

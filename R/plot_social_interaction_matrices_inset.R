@@ -7,9 +7,8 @@
 #' @param list_labels labels
 #'
 #' @return ggplot Object
-#' @export
 #'
-plot_data_matrices_large <- function(data_contact_matrices, input_variable, activity_setting_inputs,  spacing = 5, list_labels){
+plot_social_interaction_matrices_inset <- function(data_contact_matrices, input_variable, activity_setting_inputs,  spacing = 5, list_labels){
 
   plot_data <- data_contact_matrices  %>%
                   dplyr::filter(variable == input_variable, activity_setting %in% activity_setting_inputs) %>%
