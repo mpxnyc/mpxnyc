@@ -5,7 +5,7 @@
 \title{Plot Data Matrices Large}
 \usage{
 plot_data_matrices_large(
-  data,
+  data_contact_matrices,
   input_variable,
   activity_setting_inputs,
   spacing = 5,
@@ -13,8 +13,6 @@ plot_data_matrices_large(
 )
 }
 \arguments{
-\item{data}{data}
-
 \item{input_variable}{Variable}
 
 \item{activity_setting_inputs}{c("home", "social", "sexual")}
@@ -22,6 +20,8 @@ plot_data_matrices_large(
 \item{spacing}{spacing}
 
 \item{list_labels}{labels}
+
+\item{data}{data}
 }
 \value{
 ggplot Object

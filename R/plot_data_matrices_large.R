@@ -9,9 +9,9 @@
 #' @return ggplot Object
 #' @export
 #'
-plot_data_matrices_large <- function(data, input_variable, activity_setting_inputs,  spacing = 5, list_labels){
+plot_data_matrices_large <- function(data_contact_matrices, input_variable, activity_setting_inputs,  spacing = 5, list_labels){
 
-  plot_data <- data  %>%
+  plot_data <- data_contact_matrices  %>%
                   dplyr::filter(variable == input_variable, activity_setting %in% activity_setting_inputs) %>%
                   dplyr::transmute(
                                   from_var             = from,

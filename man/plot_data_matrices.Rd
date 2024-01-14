@@ -4,16 +4,21 @@
 \alias{plot_data_matrices}
 \title{Plot Data Matrices}
 \usage{
-plot_data_matrices(data, input_variable, activity_setting_input, list_labels)
+plot_data_matrices(
+  data_contact_matrices,
+  input_variable,
+  activity_setting_input,
+  list_labels
+)
 }
 \arguments{
-\item{data}{data}
-
 \item{input_variable}{variable}
 
 \item{activity_setting_input}{c("home", "social", "sexual")}
 
 \item{list_labels}{labels}
+
+\item{data}{data}
 }
 \value{
 ggplot object

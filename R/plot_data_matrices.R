@@ -8,9 +8,9 @@
 #' @return ggplot object
 #' @export
 #'
-plot_data_matrices <- function(data, input_variable, activity_setting_input, list_labels){
+plot_data_matrices <- function(data_contact_matrices, input_variable, activity_setting_input, list_labels){
 
-  plot_data <- data %>%
+  plot_data <- data_contact_matrices %>%
                 dplyr::filter(variable == input_variable, activity_setting == activity_setting_input) %>%
                 dplyr::transmute(
                                 from_var            =  from,
