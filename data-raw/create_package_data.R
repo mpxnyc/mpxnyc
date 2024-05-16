@@ -74,16 +74,16 @@ community_sf_obj <- sf::st_simplify(community_sf_obj,
 
 shape_list <- list()
 
-shape_list$censustract <- mpxnyc::census_tract_sf_obj |>
+shape_list$censustract <- census_tract_sf_obj |>
   dplyr::transmute(identifier = census_tract)
 
-shape_list$neighborhood <- mpxnyc::neighborhood_sf_obj|>
+shape_list$neighborhood <- neighborhood_sf_obj |>
   dplyr::transmute(identifier = neighborhood)
 
-shape_list$community <- mpxnyc::community_sf_obj |>
+shape_list$community <- community_sf_obj |>
   dplyr::transmute(identifier = community)
 
-shape_list$borough <- mpxnyc::borough_sf_obj |>
+shape_list$borough <- borough_sf_obj |>
   dplyr::transmute(identifier = borough)
 
 shape_list <-
