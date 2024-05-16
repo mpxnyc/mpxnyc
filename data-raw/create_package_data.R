@@ -115,8 +115,16 @@ mpxnyc_colors[["all_colors"]]     <- unlist(mpxnyc_colors)
 usethis::use_data(census_tract_sf_obj, census_tract_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(neighborhood_sf_obj, neighborhood_sf_obj,                                                       internal=FALSE, overwrite=TRUE)
 usethis::use_data(borough_sf_obj, borough_sf_obj,                                                                 internal=FALSE, overwrite=TRUE)
-usethis::use_data(census_tract_centroids, census_tract_to_nbd_vec, census_tract_to_boro_vec, census_tract_to_cmnty_vec,
-                  nbd_to_cmnty_vec, nbd_to_boro_vec, cmnty_to_boro_vec, shape_list,                               internal=TRUE,  overwrite=TRUE)
+usethis::use_data(mpxnyc_colors, mpxnyc_colors,                                                                   internal=FALSE, overwrite=TRUE)
 
+usethis::use_data(
+                  census_tract_centroids,
+                  census_tract_to_nbd_vec,
+                  census_tract_to_boro_vec,
+                  census_tract_to_cmnty_vec,
+                  nbd_to_cmnty_vec,
+                  nbd_to_boro_vec,
+                  cmnty_to_boro_vec,
+                  shape_list,
+                  internal=TRUE,  overwrite=TRUE)
 
-usethis::use_data(mpxnyc_colors, mpxnyc_colors, internal = TRUE, overwrite = TRUE)
